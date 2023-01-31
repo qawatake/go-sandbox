@@ -4,3 +4,7 @@ test:
 
 long.test:
 	go list -f '{{.Dir}}' -m | xargs go test -race
+
+tools:
+	# pkgsiteを実行すれば、例えば、http://localhost:8080/github.com/qawatake/go-sandbox/recoveryでpackageのページを表示できる。
+	go install golang.org/x/pkgsite/cmd/pkgsite@latest
