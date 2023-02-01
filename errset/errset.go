@@ -23,6 +23,7 @@ func (g *Group) Go(f func() error) {
 		defer g.wg.Done()
 
 		if err := f(); err != nil {
+			// ↓の排他制御がないと`go test -race`で落ちる。
 			g.mux.Lock()
 			defer g.mux.Unlock()
 			g.errs = append(g.errs, err)
